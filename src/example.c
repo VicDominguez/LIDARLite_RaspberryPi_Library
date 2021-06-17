@@ -17,39 +17,41 @@
 ------------------------------------------------------------------------------*/
 
 #include <linux/types.h>
-#include <cstdio>
+#include <stdio.h>
 
-#include <include/lidarlite_v3.h>
-
-LIDARLite_v3 myLidarLite;
+#include "lidarlite_v3_wrapper.h"
 
 int main()
 {
     __u16 distance;
     __u8  busyFlag;
+    
+    lidar_t *myLidarLite = lidar_create();
 
     // Initialize i2c peripheral in the cpu core
-    myLidarLite.i2c_init();
+    lidar_i2c_init(myLidarLite);
 
     // Optionally configure LIDAR-Lite
-    myLidarLite.configure(0);
+    lidar_configure_mode(myLidarLite, 4);
 
     while(1)
     {
         // Each time through the loop, check BUSY
-        busyFlag = myLidarLite.getBusyFlag();
+        busyFlag = lidar_getBusyFlag(myLidarLite);
 
         if (busyFlag == 0x00)
         {
             // When no longer busy, immediately initialize another measurement
             // and then read the distance data from the last measurement.
             // This method will result in faster I2C rep rates.
-            myLidarLite.takeRange();
-            distance = myLidarLite.readDistance();
+            lidar_takeRange(myLidarLite);
+            distance = lidar_readDistance(myLidarLite);
 
-            printf("%4d\n", distance);
+            printf("La distancia desde C es%4d\n", distance);
         }
     }
+    
+	lidar_destroy(myLidarLite);
 }
 
 
@@ -69,17 +71,17 @@ int main()
     __u16 distance;
 
     // Initialize i2c peripheral in the cpu core
-    myLidarLite.i2c_init();
+    lidar_i2c_init();
 
     // Set an alternate i2c address in the LIDAR-Lite
     // The 2nd argument, if non-zero, disables the default addr 0x62
-    myLidarLite.setI2Caddr(i2cSecondaryAddr, true);
+    lidar_setI2Caddr(i2cSecondaryAddr, true);
 
     while(1)
     {
-        myLidarLite.waitForBusy(i2cSecondaryAddr);
-        myLidarLite.takeRange(i2cSecondaryAddr);
-        distance      = myLidarLite.readDistance(i2cSecondaryAddr);
+        lidar_waitForBusy(i2cSecondaryAddr);
+        lidar_takeRange(i2cSecondaryAddr);
+        distance      = lidar_readDistance(i2cSecondaryAddr);
 
         printf("%4d\n", distance);
     }

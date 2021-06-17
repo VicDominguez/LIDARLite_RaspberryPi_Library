@@ -41,6 +41,8 @@
 #define LLv3_CORR_DATA     0x52
 #define LLv3_ACQ_SETTINGS  0x5d
 
+#include <linux/types.h>
+
 class LIDARLite_v3
 {
         __u32     file_i2c;

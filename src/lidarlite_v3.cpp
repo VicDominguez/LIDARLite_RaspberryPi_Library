@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include <include/lidarlite_v3.h>
+#include "lidarlite_v3.h"
 
 /*------------------------------------------------------------------------------
   I2C Init
