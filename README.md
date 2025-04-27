@@ -1,39 +1,35 @@
-# LIDAR-Lite Raspberry Pi Library C Wrapper
+<div align="center">
+    <h3 align="center">LIDAR-Lite Raspberry Pi Library</h3>
+    <p>Expansion library of Garmin LIDAR-Lite module for Raspberry Pi.</p>
+</div>
 
-Realised by Victor Manuel Dominguez Rivas for his Final Degree Project called Smart Driving Assistant.
+## Table of Contents
 
-Only tested for Raspberry Pi 4 and not all wrapper, only functions used on example.c. 
+- [🤔 What is this project?](#-what-is-this-project)
+- [🎯 Key Features](#-key-features)
+- [🚀 Getting Started](#-getting-started)
+- [💙 Contributing](#-contributing)
+- [ ⚠️ Disclaimer](#-disclaimer)
 
-Use by our own risk.
+## 🤔 What is this project?
 
+This project is an extension library for the Garmin LIDAR-Lite module, providing useful features for developers who wish to use this module in their projects, forked from original library.
 
-## Instructions to enable the I2C peripheral in the ARM core
-From a command shell, launch the configuration editor
-```
-sudo raspi-config
-```
-From the menu, select
-* **Interfacing Options**
-* **P5  I2C**
-* **Enable** the interface
-* Select **Finish**
-* Reboot the Raspberry Pi
+## 🎯 Key Features
 
+- A simple C wrapper to enable devs to use it on C projects, alongside original C++ implementation.
+- Exmaple of usage written in C.
 
-## Wiring the LIDAR-Lite to the Raspberry Pi
+## 🚀 Getting Started
 
-[Raspberry Pi Header](https://www.raspberrypi.org/documentation/usage/gpio/images/GPIO-Pinout-Diagram-2.png)
+Code can compiled via CMake and Make.
 
-On the 40-pin header make the following connections -
-```
-* LLv3 Blue  (SDA) - RPi pin 3 (GPIO 2)
-* LLv3 Green (SCL) - RPi pin 5 (GPIO 3)
-* LLv3 Red   (5V ) - RPi pin 4
-* LLv3 Black (GND) - RPi pin 6
+## 💙 Contributing
 
-- Wire a 680uF capacitor across pins 4 and 6
-```
+Any contributions you make are **greatly appreciated**, so if you have any idea of how to make this project better, please [create a pull request](https://github.com/VicDominguez/LIDARLite_RaspberryPi_Library/pulls). Also if you find any bug, please [create an issue](https://github.com/VicDominguez/LIDARLite_RaspberryPi_Library/issues/new).
 
-Additionally, see the following tutorials for other information concerning I2C on Raspberry Pi
-* [Adafruit](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) - Configuring I2C
-* [Sparkfun](https://learn.sparkfun.com/tutorials/raspberry-pi-spi-and-i2c-tutorial) - SPI and I2C Tutorial
+## ⚠️ Disclaimer
+
+This project was originally created by [@VicDominguez](https://github.com/VicDominguez) to use this module in the context of his Final Degree Project, *Smart Driving Assistant*.
+
+This coide was tested on Raspberry Pi 4 and not all wrapper, only functions used on example.c. Use by our own risk.
